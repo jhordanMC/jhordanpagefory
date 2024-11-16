@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje con JavaScript</title>
+</head>
+<body>
+    <div id="mensaje"></div>
+
+    <script>
+        // Definir el mensaje como un objeto JSON
+        const datos = {
+            saludo: "Hola",
+            nombre: "Yaleska",
+            mensaje: "este es el lenguaje de programación JSON"
+        };
+
+        // Formar el mensaje final
+        const mensajeCompleto = `${datos.saludo} ${datos.nombre}, ${datos.mensaje}`;
+
+        // Mostrar el mensaje en la página
+        document.getElementById("mensaje").textContent = mensajeCompleto;
+    </script>
+</body>
+</html>

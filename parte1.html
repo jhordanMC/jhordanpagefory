@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flor Roja Giratoria con Personaje</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.2/p5.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #87CEEB; /* Cielo azul claro */
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    let angle = 0; // Variable para la rotación de la flor
+
+    function setup() {
+      createCanvas(800, 600);
+    }
+
+    function draw() {
+      // Cielo soleado
+      background(135, 206, 235); // Cielo azul
+
+      // Sol con rayos
+      push(); // Guardar estado de transformación
+      translate(100, 100); // Centro del sol
+      fill(255, 255, 0); // Sol amarillo
+      ellipse(0, 0, 80, 80); // Sol
+      stroke(255, 255, 0); // Color de los rayos
+      strokeWeight(3); // Grosor de los rayos
+      for (let i = 0; i < 12; i++) {
+        line(50, 0, 80, 0); // Rayo
+        rotate(PI / 6); // Rotar para distribuir los rayos
+      }
+      noStroke(); // Restaurar sin borde
+      pop(); // Restaurar estado de transformación
+
+      // Pasto verde como suelo
+      fill(34, 139, 34); // Verde pasto
+      rect(0, height - 100, width, 100); // Pasto en la parte inferior (100px de alto)
+
+      // Flor roja giratoria
+      push(); // Guardar estado de transformación
+      translate(width / 2, height - 100); // Centro de la flor justo encima del pasto
+      rotate(angle); // Rotar en sentido horario
+      fill(255, 0, 0); // Rojo para pétalos
+      noStroke();
+      for (let i = 0; i < 8; i++) {
+        ellipse(0, -40, 20, 60); // Pétalos
+        rotate(PI / 4); // Rotar para formar la flor
+      }
+      fill(255, 255, 0); // Centro amarillo
+      ellipse(0, 0, 30, 30); // Centro de la flor
+      pop(); // Restaurar estado de transformación
+
+      // Tallo (sin rotación)
+      fill(0, 128, 0); // Verde para el tallo
+      rect(width / 2 - 5, height - 100, 10, 100); // Tallo que conecta con el pasto
+
+      // Personaje azul al lado derecho de la flor
+      push(); // Guardar estado de transformación
+      translate(width / 2 + 150, height - 100); // Posición a la derecha de la flor
+      fill(0, 0, 255); // Azul
+      stroke(0); // Borde negro
+      strokeWeight(5);
+      ellipse(0, 0, 80, 80); // Cabeza
+      noStroke(); // Sin borde para detalles
+      fill(0); // Negro para ojos y boca
+      ellipse(-20, -10, 20, 20); // Ojo izquierdo
+      ellipse(20, -10, 20, 20); // Ojo derecho
+      arc(0, 20, 40, 30, 0, PI, CHORD); // Boca sonriente
+      pop(); // Restaurar estado de transformación
+
+      // Nube de pensamiento con texto
+      push(); // Guardar estado de transformación
+
+      // Mover la nube más a la derecha (por ejemplo +250)
+        translate(width / 2 + 250, height - 200);
+
+        let escala = 1.3; // Aumenta este valor para una nube más grande
+
+        noStroke();
+        fill(255); // Fondo blanco de la nube
+        beginShape();
+        vertex(-70 * escala, -20 * escala);
+        vertex(-50 * escala, -40 * escala);
+        vertex(-20 * escala, -60 * escala);
+        vertex(10 * escala, -70 * escala);
+        vertex(40 * escala, -60 * escala);
+        vertex(70 * escala, -40 * escala);
+        vertex(90 * escala, -20 * escala);
+        vertex(80 * escala, -30 * escala);
+        vertex(60 * escala, -20 * escala);
+        vertex(40 * escala, -10 * escala);
+        vertex(20 * escala, 0 * escala);
+        vertex(-10 * escala, 0 * escala);
+        vertex(-40 * escala, -10 * escala);
+        vertex(-60 * escala, -20 * escala);
+        vertex(-70 * escala, -20 * escala);
+        endShape(CLOSE);
+
+        // Puntos de pensamiento (también agrandados)
+        fill(255);
+        ellipse(-80 * escala, 10 * escala, 12 * escala, 12 * escala);
+        ellipse(-100 * escala, 30 * escala, 10 * escala, 10 * escala);
+        ellipse(-115 * escala, 50 * escala, 8 * escala, 8 * escala);
+      // Texto dentro de la nube (moverlo hacia la izquierda: -50 en X)
+      fill(0); // Texto negro
+      textSize(12);
+      textAlign(CENTER, CENTER);
+      text("Tal vez hoy quise divertirme molestando a la estimada Y", -50, -60, 90, 40);
+
+      pop(); // Restaurar estado de transformación
+
+
+      // Actualizar ángulo para rotación continua
+      angle += 0.02; // Velocidad de rotación
+    }
+  </script>
+</body>
+</html>

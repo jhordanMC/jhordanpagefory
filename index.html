@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molestando a Yaleska Llatas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ff99cc; /* Fondo rosa */
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .login-form {
+            margin-top: 10px;
+        }
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .login-form button {
+            background-color: #800080; /* Morado */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .login-form button:hover {
+            background-color: #660066; /* Morado más oscuro al pasar el ratón */
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Molestando a Yaleska Llatas</h1>
+        <p>Sistema Y 6.0</p>
+        <img src="imagen.png" alt="Imagen de Yaleska">
+        <div class="login-form">
+            <input type="text" id="username" placeholder="Usuario" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button onclick="validateLogin()">Entrar</button>
+            <p id="error-message" class="error-message">Usuario o contraseña incorrectos</p>
+        </div>
+    </div>
+    <script>
+        function validateLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // Limpiar mensaje de error previo
+            errorMessage.style.display = 'none';
+
+            // Validar que los campos no estén vacíos
+            if (!username || !password) {
+                errorMessage.textContent = 'Por favor, completa todos los campos';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Validar credenciales (puedes cambiar estos valores)
+            if (username === 'yaleska' && password === 'sistemaY6') {
+                window.location.href = 'parte1.html';
+            } else {
+                errorMessage.textContent = 'Usuario o contraseña incorrectos';
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
